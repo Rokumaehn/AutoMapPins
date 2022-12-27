@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace AutoMapPins
@@ -38,6 +39,9 @@ namespace AutoMapPins
         internal static ConfigEntry<bool> showUncategorized;
         private const bool showUncategorizedDefault = false;
 
+
+        private static readonly List<PinnedObject> pinnedObjects = new List<PinnedObject>();
+
         void Awake()
         {
             var harmony = new Harmony(MOD_ID);
@@ -64,6 +68,32 @@ namespace AutoMapPins
                 nameof(showUncategorized),
                 showUncategorizedDefault,
                 "Uncategorized things. WARNING: That's gonna be a lot!");
+
+            showMineables.SettingChanged += Category_SettingChanged;
+            showDungeons.SettingChanged += Category_SettingChanged;
+            showSeeds.SettingChanged += Category_SettingChanged;
+            showUncategorized.SettingChanged += Category_SettingChanged;
+        }
+
+        public static void AddPinnedObject(PinnedObject pin)
+        {
+            pinnedObjects.Add(pin);
+        }
+        public static void RemovePinnedObject(PinnedObject pin)
+        {
+            pinnedObjects.Remove(pin);
+        }
+
+        private void Category_SettingChanged(object sender, EventArgs e)
+        {
+            Log.LogInfo(String.Format("Setting has changed. Rechecking {0} Pinned Objects", pinnedObjects.Count));
+            foreach (var pin in pinnedObjects)
+            {
+                if (pin.IsVisible != IsEnabled(pin.EnabledBy))
+                {
+                    pin.IsVisible = IsEnabled(pin.EnabledBy);
+                }
+            }
         }
 
         internal static bool IsEnabled(String id)

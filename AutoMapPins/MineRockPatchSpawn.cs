@@ -24,7 +24,7 @@ namespace AutoMapPins
                 Mod.LogUnmatchedName(typeof(MineRock), obj.name);
                 Mod.LogUnmatchedHover(typeof(MineRock), obj.GetComponent<HoverText>()?.m_text);
             }
-            else if (!System.String.IsNullOrWhiteSpace(template.Label) && template.IsEnabled())
+            else if (!System.String.IsNullOrWhiteSpace(template.Label))
             {
                 var hovertextcomp = obj.GetComponent<HoverText>();
                 var height = __instance.gameObject.transform.position.y;
@@ -32,7 +32,7 @@ namespace AutoMapPins
                 if (height < Mod.MAX_PIN_HEIGHT)
                 {
                     var pin = ((Component)__instance).gameObject.AddComponent<PinnedObject>();
-                    pin.Init(template.Label);
+                    pin.Init(template.Label, template.EnabledBy);
                 }
             }
         }
