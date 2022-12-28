@@ -79,5 +79,13 @@
     <Compile Include="PinnedObject.cs" />
     <Compile Include="PinTemplate.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="manifest.json" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if $(ConfigurationName) == Release (powershell Compress-Archive -Path '$(TargetDir)*.dll', '$(TargetDir)*.pdb', '$(ProjectDir)manifest.json', '$(ProjectDir)icon.png', '$(SolutionDir)*.md' -DestinationPath '$(SolutionDir)\Auto Map Pins Thunderstore.zip' -Force)
+
+if $(ConfigurationName) == Release (powershell Compress-Archive -Path '$(TargetDir)*.dll', '$(TargetDir)*.pdb' -DestinationPath '$(SolutionDir)\Auto Map Pins Nexus.zip' -Force)</PostBuildEvent>
+  </PropertyGroup>
 </Project>

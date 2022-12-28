@@ -1,0 +1,9 @@
+﻿{
+  "name": "AutoMapPins",
+  "version_number": "1.0.1",
+  "website_url": "https://github.com/Kempeth/AutoMapPins",
+  "description": "Automatically creates temporary pins for various ingame objects.",
+  "dependencies": [
+    "denikson-BepInExPack_Valheim-5.4.1901"
+  ]
+}
