@@ -100,7 +100,9 @@ namespace AutoMapPins
 
         private void Category_SettingChanged(object sender, EventArgs e)
         {
+#if DEBUG
             Log.LogInfo(String.Format("Setting has changed. Rechecking {0} Pinned Objects", pinnedObjects.Count));
+#endif
             foreach (var pin in pinnedObjects)
             {
                 pin.UpdatePinVisibility();
@@ -149,9 +151,11 @@ namespace AutoMapPins
             if (!UnmatchedNames[t].Contains(name))
             {
                 UnmatchedNames[t].Add(name);
-                
+
                 // Look in BepInEx\LogOutput.log
+#if DEBUG
                 Log.LogWarning(String.Format("New unmatched {0} discovered with name {1}. #{2}", t, name, UnmatchedNames.Count));
+#endif
             }
         }
 
@@ -168,7 +172,9 @@ namespace AutoMapPins
                 UnmatchedHovers[t].Add(hover);
 
                 // Look in BepInEx\LogOutput.log
+#if DEBUG
                 Log.LogWarning(String.Format("New unmatched {0} discovered with hover {1}. #{2}", t, hover, UnmatchedHovers.Count));
+#endif
             }
         }
     }

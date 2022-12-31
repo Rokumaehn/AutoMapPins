@@ -33,7 +33,9 @@ namespace AutoMapPins
                 }
             }
             Mod.AddPinnedObject(this);
+#if DEBUG
             Mod.Log.LogInfo(string.Format("Tracking: {0} at {1} {2} {3}", Template.Label, transform.position.x, transform.position.y, transform.position.z));
+#endif
         }
 
         private void ShowPin()
@@ -74,7 +76,9 @@ namespace AutoMapPins
                 Group.Remove(this);
             }
 
+#if DEBUG
             Mod.Log.LogInfo(string.Format("Removing: {0} at {1} {2} {3}", pin?.m_name, transform.position.x, transform.position.y, transform.position.z));
+#endif
             Mod.RemovePinnedObject(this);
         }
 
