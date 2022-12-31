@@ -9,44 +9,64 @@ namespace AutoMapPins
 {
     public static class Pin
     {
-        internal static PinTemplate<T> Make<T>(ObjectMatcher<T> matcher, string label = null, string enabledBy = null) where T : MonoBehaviour
+        internal static PinTemplate Name(string template)
         {
-            return new PinTemplate<T>() { Matcher = matcher, Label = label, EnabledBy = enabledBy };
+            return new PinTemplate().Matching(new InstanceNameRegex(template));
         }
 
-        internal static ObjectMatcher<T> Name<T>(string template) where T : MonoBehaviour
+        internal static PinTemplate Hovr(string template)
         {
-            return new InstanceNameRegex<T>(template);
-        }
-
-        internal static ObjectMatcher<T> Hover<T>(string template) where T : MonoBehaviour
-        {
-            return new HoverTextRegex<T>(template);
+            return new PinTemplate().Matching(new HoverTextRegex(template));
         }
     }
 
-    internal class PinTemplate<T> where T : MonoBehaviour
+    internal class PinTemplate
     {
-        public string Label;
-        public ObjectMatcher<T> Matcher;
-        public string EnabledBy;
+        public string Label { get; private set; }
+        public ObjectMatcher Matcher { get; private set; }
+        public string ConfigurationKey { get; private set; }
+        public bool IsGrouped { get; private set; }
 
-        public bool IsMatch(T obj)
+        public bool IsMatch(MonoBehaviour obj)
         {
             return Matcher.IsMatch(obj);
         }
         public bool IsEnabled()
         {
-            return Mod.IsEnabled(this.EnabledBy);
+            return Mod.IsEnabled(this.ConfigurationKey);
+        }
+
+        internal PinTemplate Matching(ObjectMatcher matcher)
+        {
+            this.Matcher = matcher;
+            return this;
+        }
+
+        internal PinTemplate Lbl(string label)
+        {
+            this.Label = label;
+            return this;
+        }
+
+        internal PinTemplate Nbl(string configurationKey)
+        {
+            this.ConfigurationKey = configurationKey;
+            return this;
+        }
+
+        internal PinTemplate Grp()
+        {
+            this.IsGrouped = true;
+            return this;
         }
     }
 
-    internal abstract class ObjectMatcher<T> where T : MonoBehaviour
+    internal abstract class ObjectMatcher
     {
-        abstract public bool IsMatch(T obj);
+        abstract public bool IsMatch(MonoBehaviour obj);
     }
 
-    internal class InstanceNameRegex<T> : ObjectMatcher<T> where T : MonoBehaviour
+    internal class InstanceNameRegex : ObjectMatcher
     {
         private Regex _pattern;
 
@@ -55,13 +75,13 @@ namespace AutoMapPins
             _pattern = new Regex(template);
         }
 
-        public override bool IsMatch(T obj)
+        public override bool IsMatch(MonoBehaviour obj)
         {
             return _pattern.IsMatch(obj.name);
         }
     }
 
-    internal class HoverTextRegex<T> : ObjectMatcher<T> where T : MonoBehaviour
+    internal class HoverTextRegex : ObjectMatcher
     {
         private Regex _pattern;
 
@@ -70,7 +90,7 @@ namespace AutoMapPins
             _pattern = new Regex(template);
         }
 
-        public override bool IsMatch(T obj)
+        public override bool IsMatch(MonoBehaviour obj)
         {
             var hoverTextComponent = obj.GetComponent<HoverText>();
 

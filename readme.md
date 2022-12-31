@@ -4,12 +4,16 @@ This mod serves as a kind of "radar" for your Valheim map, automatically creatin
 * **Mineables:** Copper, Tin, Iron, Silver, Obsidian, Meteorites and Leviathans
 * **Dungeons:** Burial Chambers, Troll Caves, Sunken Crypts, Mountain Caves and Infested Mines
 * **Seeds:** Carrot Seeds, Turnip Seeds, Barley and Flax
+* **Harvestables:** Berries, Mushrooms, Remains and many more
+* **Flowers:** Dandelions and Thistles (separate because they really fill up the map when enabled and are generally easy to find)
+
+Most type of markers will group multiple objects of the same time into a single pin (Berries Mushrooms, Flax, Barley, and such) to reduce clutter on the map.
+
+Copper, Iron and Silver will show whether they are fully intact or partially mined.
 
 Each category can be enabled and disabled via the **BepInEx ModConfiguration** plugin. In addition you can also toggle the display of all object types that I've currently identified in the game. But be warned that this will really clutter your map.
 
 ##  Planned Features
-* Pins for Berries, Mushrooms and other pickable things
-* Grouping multiple nearby objects of the same type into a single pin (Berries Mushrooms, Flax, Barley, and such)
 * Pins for Points of Interests like ruins, stone circles and camps
 * Themed pin icons for the various categories
 

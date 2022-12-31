@@ -70,9 +70,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cat.cs" />
+    <Compile Include="MineRock5PatchSpawn.cs" />
     <Compile Include="PickablePatchSpawn.cs" />
     <Compile Include="LocationPatchSpawn.cs" />
     <Compile Include="MineRockPatchSpawn.cs" />
+    <Compile Include="PinnedObjectGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DestructiblePatchSpawn.cs" />
     <Compile Include="Mod.cs" />

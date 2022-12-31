@@ -5,24 +5,28 @@ using UnityEngine;
 
 namespace AutoMapPins
 {
-    [HarmonyPatch(typeof(MineRock), "Start")]
-    class MineRockPatchSpawn
+    [HarmonyPatch(typeof(MineRock5), "Start")]
+    class MineRock5PatchSpawn
     {
         private static readonly PinTemplate[] TEMPLATES = new PinTemplate[]
         {
-            Pin.Name("Leviathan" + Mod.CLONE).Lbl("Leviathan").Nbl(Cat.MINEABLES),
-            Pin.Name("MineRock_Meteorite" + Mod.CLONE).Lbl("Glowing Metal").Nbl(Cat.MINEABLES)
+            Pin.Name("rock\\d+_copper_frac"+Mod.CLONE).Lbl("partial Copper").Nbl(Cat.MINEABLES).Grp(),
+            Pin.Name("mudpile_frac"+Mod.CLONE).Lbl("partial Iron").Nbl(Cat.MINEABLES).Grp(),
+            Pin.Name("silver(vein)?_frac"+Mod.CLONE).Lbl("partial Silver").Nbl(Cat.MINEABLES).Grp(),
+
+            Pin.Name("rock\\d+_forest_frac"+Mod.CLONE),
+            Pin.Name("rock\\d+_mountain_frac"+Mod.CLONE),
         };
 
-        private static void Postfix(ref MineRock __instance)
+        private static void Postfix(ref MineRock5 __instance)
         {
-            MineRock obj = __instance;
+            MineRock5 obj = __instance;
             var template = TEMPLATES.FirstOrDefault(t => t.IsMatch(obj));
 
             if (template == null)
             {
-                Mod.LogUnmatchedName(typeof(MineRock), obj.name);
-                Mod.LogUnmatchedHover(typeof(MineRock), obj.GetComponent<HoverText>()?.m_text);
+                Mod.LogUnmatchedName(typeof(MineRock5), obj.name);
+                Mod.LogUnmatchedHover(typeof(MineRock5), obj.GetComponent<HoverText>()?.m_text);
             }
             else if (!System.String.IsNullOrWhiteSpace(template.Label))
             {

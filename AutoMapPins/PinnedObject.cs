@@ -1,41 +1,80 @@
-﻿using System.Reflection.Emit;
+﻿using System.Reflection;
+using System.Reflection.Emit;
 using UnityEngine;
 
 namespace AutoMapPins
 {
-    class PinnedObject: MonoBehaviour
+    class PinnedObject : MonoBehaviour
     {
-        public Minimap.PinData pin;
+        private Minimap.PinData pin;
 
-        public string Label { get; private set; }
-        public string EnabledBy { get; private set; }
+        public PinTemplate Template { get; private set; }
+        public PinnedObjectGroup Group { get; private set; }
         
-        public void Init(string label, string enabledBy)
+        public void Init(PinTemplate template)
         {
-            Label = label;
-            EnabledBy = enabledBy;
-            if (Mod.IsEnabled(enabledBy))
+            Template = template;
+
+            if (Template.IsGrouped)
             {
-                ShowPin();
+                Group = PinnedObjectGroup.FindOrCreateFor(this);
+                Group.Add(this);
+            }
+
+            if (Mod.IsEnabled(Template.ConfigurationKey))
+            {
+                if (Template.IsGrouped)
+                {
+                    Group.UpdatePinVisibility();
+                }
+                else
+                {
+                    ShowPin();
+                }
             }
             Mod.AddPinnedObject(this);
-            Mod.Log.LogInfo(string.Format("Tracking: {0} at {1} {2} {3}", label, transform.position.x, transform.position.y, transform.position.z));
+            Mod.Log.LogInfo(string.Format("Tracking: {0} at {1} {2} {3}", Template.Label, transform.position.x, transform.position.y, transform.position.z));
         }
 
         private void ShowPin()
         {
-            pin = Minimap.instance.AddPin(transform.position, Minimap.PinType.Icon3, Label, false, false);
+            pin = Minimap.instance.AddPin(transform.position, Minimap.PinType.Icon3, Template.Label, false, false);
             visible = true;
         }
 
-        void OnDestroy()
+        private void HidePin()
         {
             if (pin != null && Minimap.instance != null)
             {
                 Minimap.instance.RemovePin(pin);
-                visible = false;
-                Mod.Log.LogInfo(string.Format("Removing: {0} at {1} {2} {3}", pin.m_name, transform.position.x, transform.position.y, transform.position.z));
             }
+            visible = false;
+        }
+
+        public void UpdatePinVisibility()
+        {
+            var toshow = Mod.IsEnabled(Template.ConfigurationKey);
+            if (toshow != visible)
+            {
+                IsVisible = toshow;
+            }
+
+            if (Template.IsGrouped)
+            {
+                Group.UpdatePinVisibility();
+            }
+        }
+
+        void OnDestroy()
+        {
+            HidePin();
+
+            if (Group != null)
+            {
+                Group.Remove(this);
+            }
+
+            Mod.Log.LogInfo(string.Format("Removing: {0} at {1} {2} {3}", pin?.m_name, transform.position.x, transform.position.y, transform.position.z));
             Mod.RemovePinnedObject(this);
         }
 
@@ -45,14 +84,22 @@ namespace AutoMapPins
             get => visible;
             set
             {
-                if (value)
+                if (Template.IsGrouped)
                 {
-                    ShowPin();
+                    Group.UpdatePinVisibility();
                 }
                 else
                 {
-                    Minimap.instance.RemovePin(pin);
+                    if (value)
+                    {
+                        ShowPin();
+                    }
+                    else
+                    {
+                        HidePin();
+                    }
                 }
+
                 visible = value;
             }
         }

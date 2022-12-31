@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace AutoMapPins
 {
-    [BepInPlugin(MOD_ID, "Auto Map Pins", "1.0.0")]
+    [BepInPlugin(MOD_ID, "Auto Map Pins", "1.1.0")]
     class Mod : BaseUnityPlugin
     {
         public const string MOD_ID = "Kempeth_AutoMapPins";
@@ -23,19 +23,21 @@ namespace AutoMapPins
 
         public static ManualLogSource Log;
 
-        public const string CATEGORY_MINEABLES = "Category.Mineables";
         internal static ConfigEntry<bool> showMineables;
         private const bool showMineablesDefault = true;
 
-        public const string CATEGORY_DUNGEONS = "Category.Dungeons";
         internal static ConfigEntry<bool> showDungeons;
         private const bool showDungeonsDefault = true;
 
-        public const string CATEGORY_SEEDS = "Category.Seeds";
         internal static ConfigEntry<bool> showSeeds;
         private const bool showSeedsDefault = true;
 
-        public const string CATEGORY_UNCATEOGRIZED = null;
+        internal static ConfigEntry<bool> showHarvestables;
+        private const bool showHarvestablesDefault = true;
+
+        internal static ConfigEntry<bool> showFlowers;
+        private const bool showFlowersDefault = false;
+
         internal static ConfigEntry<bool> showUncategorized;
         private const bool showUncategorizedDefault = false;
 
@@ -50,28 +52,40 @@ namespace AutoMapPins
 
             showMineables = this.Config.Bind<bool>(
                 "Categories",
-                nameof(showMineables),
+                "Mineables",
                 showMineablesDefault,
                 "Show mineable nodes like Ores, Meterorites and Leviathans");
             showDungeons = this.Config.Bind<bool>(
                 "Categories",
-                nameof(showDungeons),
+                "showDungeons",
                 showDungeonsDefault,
                 "Show dungeon entrances");
             showSeeds = this.Config.Bind<bool>(
                 "Categories",
-                nameof(showSeeds),
+                "Seeds",
                 showSeedsDefault,
                 "Show seeds");
+            showHarvestables = this.Config.Bind<bool>(
+                "Categories",
+                "Harvestables",
+                showHarvestablesDefault,
+                "Show harvestables like Berries and Mushrooms");
+            showFlowers = this.Config.Bind<bool>(
+                "Categories",
+                "Flowers",
+                showFlowersDefault,
+                "Show flowers like Dandelions and Thistles");
             showUncategorized = this.Config.Bind<bool>(
                 "Categories",
-                nameof(showUncategorized),
+                "Uncategorized",
                 showUncategorizedDefault,
                 "Uncategorized things. WARNING: That's gonna be a lot!");
 
             showMineables.SettingChanged += Category_SettingChanged;
             showDungeons.SettingChanged += Category_SettingChanged;
             showSeeds.SettingChanged += Category_SettingChanged;
+            showHarvestables.SettingChanged += Category_SettingChanged;
+            showFlowers.SettingChanged += Category_SettingChanged;
             showUncategorized.SettingChanged += Category_SettingChanged;
         }
 
@@ -89,28 +103,33 @@ namespace AutoMapPins
             Log.LogInfo(String.Format("Setting has changed. Rechecking {0} Pinned Objects", pinnedObjects.Count));
             foreach (var pin in pinnedObjects)
             {
-                if (pin.IsVisible != IsEnabled(pin.EnabledBy))
-                {
-                    pin.IsVisible = IsEnabled(pin.EnabledBy);
-                }
+                pin.UpdatePinVisibility();
             }
         }
 
         internal static bool IsEnabled(String id)
         {
-            if (id == CATEGORY_MINEABLES)
+            if (id == Cat.MINEABLES)
             {
                 return showMineables.Value;
             }
-            else if (id == CATEGORY_DUNGEONS)
+            else if (id == Cat.DUNGEONS)
             {
                 return showDungeons.Value;
             }
-            else if (id == CATEGORY_SEEDS)
+            else if (id == Cat.SEEDS)
             {
                 return showSeeds.Value;
             }
-            else if (id == CATEGORY_UNCATEOGRIZED)
+            else if (id == Cat.HARVESTABLES)
+            {
+                return showHarvestables.Value;
+            }
+            else if (id == Cat.FLOWERS)
+            {
+                return showFlowers.Value;
+            }
+            else if (id == Cat.UNCATEGORIZED)
             {
                 return showUncategorized.Value;
             }
@@ -118,8 +137,8 @@ namespace AutoMapPins
         }
 
 
-        private static Dictionary<Type,List<string>> UnmatchedNames = new Dictionary<Type, List<string>>();
-        private static Dictionary<Type, List<string>> UnmatchedHovers = new Dictionary<Type, List<string>>();
+        private static readonly Dictionary<Type,List<string>> UnmatchedNames = new Dictionary<Type, List<string>>();
+        private static readonly Dictionary<Type, List<string>> UnmatchedHovers = new Dictionary<Type, List<string>>();
 
         public static void LogUnmatchedName(Type t, string name)
         {
