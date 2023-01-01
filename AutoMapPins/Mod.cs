@@ -87,6 +87,10 @@ namespace AutoMapPins
             showHarvestables.SettingChanged += Category_SettingChanged;
             showFlowers.SettingChanged += Category_SettingChanged;
             showUncategorized.SettingChanged += Category_SettingChanged;
+
+            Mod.Log.LogInfo("Initializing Assets");
+            Assets.Init();
+            Mod.Log.LogInfo("Finished initializing Assets");
         }
 
         public static void AddPinnedObject(PinnedObject pin)
@@ -111,27 +115,27 @@ namespace AutoMapPins
 
         internal static bool IsEnabled(String id)
         {
-            if (id == Cat.MINEABLES)
+            if (id == Cat.MINEABLES.Key)
             {
                 return showMineables.Value;
             }
-            else if (id == Cat.DUNGEONS)
+            else if (id == Cat.DUNGEONS.Key)
             {
                 return showDungeons.Value;
             }
-            else if (id == Cat.SEEDS)
+            else if (id == Cat.SEEDS.Key)
             {
                 return showSeeds.Value;
             }
-            else if (id == Cat.HARVESTABLES)
+            else if (id == Cat.HARVESTABLES.Key)
             {
                 return showHarvestables.Value;
             }
-            else if (id == Cat.FLOWERS)
+            else if (id == Cat.FLOWERS.Key)
             {
                 return showFlowers.Value;
             }
-            else if (id == Cat.UNCATEGORIZED)
+            else if (id == Cat.UNCATEGORIZED?.Key)
             {
                 return showUncategorized.Value;
             }

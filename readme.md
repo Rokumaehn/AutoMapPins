@@ -21,3 +21,11 @@ Each category can be enabled and disabled via the **BepInEx ModConfiguration** p
 This mod is forked from bdew's AutoMapPins, who provided a great starting point.
 
 This mod is free software: you can redistribute it and/or modify it under the terms of the [GNU Lesser General Public License](http://www.gnu.org/licenses/lgpl-3.0.en.html) as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+Asset Licenses:
+
+* Mine by Edward Boatman from [Noun Project](https://thenounproject.com/browse/icons/term/mine/) (CCBY) - modified
+* Flower by Vectors Market from [Noun Project](https://thenounproject.com/browse/icons/term/flower/) (CCBY) - modified
+* cave by Kieu Thi Kim Cuong from [Noun Project](https://thenounproject.com/browse/icons/term/cave/) (CCBY) - modified
+* raspberry by Laymik from [Noun Project](https://thenounproject.com/browse/icons/term/raspberry/) (CCBY) - modified
+* seeds by Orin zuu from [Noun Project](https://thenounproject.com/browse/icons/term/seeds/) (CCBY) - modified

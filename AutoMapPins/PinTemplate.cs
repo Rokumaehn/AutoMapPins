@@ -25,6 +25,7 @@ namespace AutoMapPins
         public string Label { get; private set; }
         public ObjectMatcher Matcher { get; private set; }
         public string ConfigurationKey { get; private set; }
+        public Cat Category { get; private set; }
         public bool IsGrouped { get; private set; }
 
         public bool IsMatch(MonoBehaviour obj)
@@ -48,9 +49,10 @@ namespace AutoMapPins
             return this;
         }
 
-        internal PinTemplate Nbl(string configurationKey)
+        internal PinTemplate Nbl(Cat category)
         {
-            this.ConfigurationKey = configurationKey;
+            this.Category = category;
+            this.ConfigurationKey = category.Key;
             return this;
         }
 

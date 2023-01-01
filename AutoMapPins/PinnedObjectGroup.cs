@@ -69,6 +69,10 @@ namespace AutoMapPins
                 var txt = (KnownLocations.Count > 1 ? (KnownLocations.Count + " ") : "") + Template.Label;
 
                 Pin = Minimap.instance.AddPin(Middle, Minimap.PinType.Icon3, txt, false, false);
+                if (Template.Category?.Icon != null)
+                {
+                    Pin.m_icon = Template.Category.Icon;
+                }
             }
             else if (Pin != null && Minimap.instance != null)
             {

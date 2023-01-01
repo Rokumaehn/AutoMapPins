@@ -41,6 +41,10 @@ namespace AutoMapPins
         private void ShowPin()
         {
             pin = Minimap.instance.AddPin(transform.position, Minimap.PinType.Icon3, Template.Label, false, false);
+            if (Template.Category?.Icon != null)
+            {
+                pin.m_icon = Template.Category.Icon;
+            }
             visible = true;
         }
 
