@@ -11,11 +11,10 @@ Most type of markers will group multiple objects of the same time into a single 
 
 Copper, Iron and Silver will show whether they are fully intact or partially mined.
 
-Each category can be enabled and disabled via the **BepInEx ModConfiguration** plugin. In addition you can also toggle the display of all object types that I've currently identified in the game. But be warned that this will really clutter your map.
+Each category has it's own icon and can be enabled and disabled via the **BepInEx ModConfiguration** plugin. In addition you can also toggle the display of all object types that I've currently identified in the game. But be warned that this will really clutter your map.
 
 ##  Planned Features
 * Pins for Points of Interests like ruins, stone circles and camps
-* Themed pin icons for the various categories
 
 ##  License and Credits
 This mod is forked from bdew's AutoMapPins, who provided a great starting point.
