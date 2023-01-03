@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace AutoMapPins
 {
-    [BepInPlugin(MOD_ID, "Auto Map Pins", "1.1.0")]
+    [BepInPlugin(MOD_ID, "Auto Map Pins", "1.1.1")]
     class Mod : BaseUnityPlugin
     {
         public const string MOD_ID = "Kempeth_AutoMapPins";
