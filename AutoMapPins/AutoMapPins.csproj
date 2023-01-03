@@ -65,7 +65,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp">
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System.Data">
       <Private>False</Private>
@@ -128,10 +128,19 @@
   <ItemGroup>
     <None Include="Icons\SeedIcon.bin" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\BerryIcon48.bin" />
+    <None Include="Icons\DungeonIcon48.bin" />
+    <None Include="Icons\FlowerIcon48.bin" />
+    <None Include="Icons\MineIcon48.bin" />
+    <None Include="Icons\SeedIcon48.bin" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if $(ConfigurationName) == Release (powershell Compress-Archive -Path '$(TargetDir)*.dll', '$(TargetDir)*.pdb', '$(ProjectDir)manifest.json', '$(ProjectDir)icon.png', '$(SolutionDir)*.md' -DestinationPath '$(SolutionDir)\Auto Map Pins Thunderstore.zip' -Force)
+    <PostBuildEvent>if $(ConfigurationName) == Release (powershell Compress-Archive -Path '$(TargetDir)*.dll', '$(TargetDir)*.pdb', '$(ProjectDir)manifest.json', '$(ProjectDir)icon.png', '$(SolutionDir)readme.md' -DestinationPath '$(SolutionDir)\Auto Map Pins Thunderstore.zip' -Force)
 
-if $(ConfigurationName) == Release (powershell Compress-Archive -Path '$(TargetDir)*.dll', '$(TargetDir)*.pdb' -DestinationPath '$(SolutionDir)\Auto Map Pins Nexus.zip' -Force)</PostBuildEvent>
+if $(ConfigurationName) == Release (powershell Compress-Archive -Path '$(TargetDir)*.dll', '$(TargetDir)*.pdb' -DestinationPath '$(SolutionDir)\Auto Map Pins Nexus.zip' -Force)
+
+if $(ConfigurationName) == Debug (powershell copy-item '$(TargetDir)*.*' '$(ProjectDir)References\valheim_Data\..\BepInEx\plugins\AutoMapPins\')</PostBuildEvent>
   </PropertyGroup>
 </Project>

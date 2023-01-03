@@ -41,6 +41,9 @@ namespace AutoMapPins
         internal static ConfigEntry<bool> showUncategorized;
         private const bool showUncategorizedDefault = false;
 
+        internal static ConfigEntry<bool> useSmallerIcons;
+        internal static ConfigEntry<int> padToWidth;
+        internal static ConfigEntry<float> fontFactor;
 
         private static readonly List<PinnedObject> pinnedObjects = new List<PinnedObject>();
 
@@ -80,6 +83,24 @@ namespace AutoMapPins
                 "Uncategorized",
                 showUncategorizedDefault,
                 "Uncategorized things. WARNING: That's gonna be a lot!");
+
+
+            useSmallerIcons = this.Config.Bind<bool>(
+                "Display",
+                "Smaller Icons",
+                false,
+                "Will reduce the size of icons by 25% and text by about 50%");
+
+            padToWidth = this.Config.Bind<int>(
+                "Debug",
+                "Pad to Width",
+                60,
+                "This is the amount of spaces the pin text will be padded to");
+            fontFactor = this.Config.Bind<float>(
+                "Debug",
+                "Font Factor",
+                1.8f,
+                "This is the estimated factor by which normal characters are wider than spaces");
 
             showMineables.SettingChanged += Category_SettingChanged;
             showDungeons.SettingChanged += Category_SettingChanged;
@@ -180,6 +201,17 @@ namespace AutoMapPins
                 Log.LogWarning(String.Format("New unmatched {0} discovered with hover {1}. #{2}", t, hover, UnmatchedHovers.Count));
 #endif
             }
+        }
+
+        public static string Wrap(string orig)
+        {
+            if (useSmallerIcons.Value)
+            {
+                var n = Math.Max(0, (int)Math.Ceiling((padToWidth.Value - orig.Length * fontFactor.Value) / 2.0));
+                var pad = new string('\u00A0', n);
+                return pad + orig.Replace(' ', '\u00A0') + pad;
+            }
+            else return orig;
         }
     }
 }

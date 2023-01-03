@@ -10,23 +10,25 @@ namespace AutoMapPins
     internal class Cat
     {
         public static readonly Cat UNCATEGORIZED = null;
-        public static readonly Cat DUNGEONS = new Cat("Category.Dungeons", Assets.DungeonSprite);
-        public static readonly Cat FLOWERS = new Cat("Category.Flowers", Assets.FlowerSprite);
-        public static readonly Cat HARVESTABLES = new Cat("Category.Harvestables", Assets.BerrySprite);
-        public static readonly Cat MINEABLES = new Cat("Category.Mineables", Assets.MineSprite);
-        public static readonly Cat SEEDS = new Cat("Category.Seeds", Assets.SeedSprite);
+        public static readonly Cat DUNGEONS = new Cat("Category.Dungeons", Assets.DungeonSprite, Assets.DungeonSprite48);
+        public static readonly Cat FLOWERS = new Cat("Category.Flowers", Assets.FlowerSprite, Assets.FlowerSprite);
+        public static readonly Cat HARVESTABLES = new Cat("Category.Harvestables", Assets.BerrySprite, Assets.BerrySprite48);
+        public static readonly Cat MINEABLES = new Cat("Category.Mineables", Assets.MineSprite, Assets.MineSprite48);
+        public static readonly Cat SEEDS = new Cat("Category.Seeds", Assets.SeedSprite, Assets.SeedSprite48);
 
 
 
         internal string Key { get; private set; }
-        internal Sprite Icon { get; private set; }
+        internal Sprite Icon => Mod.useSmallerIcons.Value ? icon48 : icon64;
+        private Sprite icon64;
+        private Sprite icon48;
 
 
-
-        internal Cat(string key, Sprite icon)
+        internal Cat(string key, Sprite icon64, Sprite icon48)
         {
             Key = key;
-            Icon = icon;
+            this.icon64 = icon64;
+            this.icon48 = icon48;
         }
     }
 }

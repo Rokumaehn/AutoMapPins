@@ -121,16 +121,31 @@
   <data name="BerryIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\berryicon.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="BerryIcon48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\berryicon48.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="DungeonIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\dungeonicon.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DungeonIcon48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\dungeonicon48.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="FlowerIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\flowericon.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="FlowerIcon48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\flowericon48.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="MineIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\mineicon.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="MineIcon48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\mineicon48.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="SeedIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\seedicon.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SeedIcon48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\seedicon48.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>
