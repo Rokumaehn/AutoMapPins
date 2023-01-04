@@ -15,38 +15,15 @@ namespace AutoMapPins
             Pin.Name("Pickable_Branch" + Mod.DIGITS_BRACED_OPTIONAL + Mod.CLONE),
 
             Pin.Name("Pickable_SurtlingCoreStand" + Mod.DIGITS_BRACED_OPTIONAL + Mod.CLONE).Lbl("Surtling Core").Grp(), // stays, placed > 5000
-            Pin.Name("Pickable_SeedCarrot" + Mod.CLONE).Lbl("Carrot Seeds"),                                            // disappears, overlaps with Destructible
-
-            Pin.Name("Pickable_SeedTurnip" + Mod.CLONE).Lbl("Turnip Seeds"),                                            // disappears, overlaps with Destructible
 
             Pin.Name("Pickable_MeatPile" + Mod.DIGITS_BRACED_OPTIONAL + Mod.CLONE)                                      // stays, placed > 5000
                     .Lbl("Meat Pile").Nbl(Cat.HARVESTABLES).Grp(),
             Pin.Name("Pickable_MountainCaveCrystal" + Mod.DIGITS_BRACED_OPTIONAL + Mod.CLONE)                           // stays, placed > 5000
                     .Lbl("Cave Crystal").Nbl(Cat.HARVESTABLES).Grp(),
-            Pin.Name("Pickable_DragonEgg" + Mod.CLONE).Lbl("Dragon Egg").Nbl(Cat.HARVESTABLES).Grp(),                   // stays
-            Pin.Name("Pickable_MountainRemains" + Mod.DIGITS + "_buried" + Mod.CLONE)
-                    .Lbl("M. Remains").Nbl(Cat.HARVESTABLES).Grp(),
-            Pin.Name("hanging_hairstrands" + Mod.DIGITS_BRACED_OPTIONAL + Mod.CLONE)                                    // stays
-                    .Lbl("Fenris Hair").Nbl(Cat.HARVESTABLES).Grp(),
 
-            Pin.Name("Pickable_Flax_Wild" + Mod.DIGITS_BRACED_OPTIONAL + Mod.CLONE).Lbl("Flax"),                        // disappears, overlaps with Destructible
-            Pin.Name("Pickable_Barley_Wild" + Mod.DIGITS_BRACED_OPTIONAL + Mod.CLONE).Lbl("Barley"),                    // disappears, overlaps with Destructible
-            Pin.Name("Pickable_Tar(Big)?" + Mod.DIGITS_BRACED_OPTIONAL + Mod.CLONE)                                     // disappears
-                    .Lbl("Tar").Nbl(Cat.HARVESTABLES).Grp(),
-            Pin.Name("CloudberryBush" + Mod.CLONE).Lbl("Cloudberries").Nbl(Cat.HARVESTABLES).Grp(),                     // stays
-            Pin.Name("goblin_totempole" + Mod.CLONE).Lbl("Fuling Totem").Nbl(Cat.HARVESTABLES).Grp(),                   // stays 
-
-            Pin.Name("Pickable_Mushroom_Magecap" + Mod.CLONE).Lbl("Magecap").Nbl(Cat.HARVESTABLES).Grp(),               // stays
-            Pin.Name("Pickable_Mushroom_JotunPuffs" + Mod.CLONE)                                                        // stays
-                    .Lbl("Jotun Puffs").Nbl(Cat.HARVESTABLES).Grp(),
-            Pin.Name("Pickable_DvergrLantern" + Mod.DIGITS_BRACED_OPTIONAL + Mod.CLONE)                                 // disappears
-                    .Lbl("Lantern").Nbl(Cat.HARVESTABLES).Grp(),
-            Pin.Name("Pickable_DvergrStein" + Mod.CLONE).Lbl("Dvergr Stein").Nbl(Cat.HARVESTABLES).Grp(),
             Pin.Name("Pickable_RoyalJelly" + Mod.CLONE).Lbl("Royal Jelly").Nbl(Cat.HARVESTABLES).Grp(),                 // disappears, placed > 5000
             Pin.Name("Pickable_BlackCoreStand" + Mod.DIGITS_BRACED_OPTIONAL + Mod.CLONE)                                // stays, placed > 5000
                     .Lbl("Black Core").Nbl(Cat.HARVESTABLES).Grp(),
-            Pin.Name("Pickable_DvergrMineTreasure" + Mod.DIGITS_BRACED_OPTIONAL + Mod.CLONE)
-                    .Lbl("Dvergr Treasure").Nbl(Cat.HARVESTABLES).Grp(),
             
             Pin.Name("Pickable_Fishingrod" + Mod.CLONE),
         };

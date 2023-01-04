@@ -12,6 +12,18 @@ namespace AutoMapPins.Templates
     {
     }
 
+    internal abstract class PickableTemplate : PinTemplate
+    {
+        public PickableTemplate()
+        {
+            IngameType = typeof(Pickable);
+            IsGrouped = true;
+            GroupingDistance = DISTANCE_MUSHROOMS;
+            NormalIcon = Assets.BerrySprite;
+            SmallerIcon = Assets.BerrySprite48;
+        }
+    }
+
     internal abstract class BerryTemplate : PinTemplate
     {
         public BerryTemplate()
@@ -57,6 +69,18 @@ namespace AutoMapPins.Templates
             GroupingDistance = DISTANCE_MUSHROOMS;
             NormalIcon = Assets.BerrySprite;
             SmallerIcon = Assets.BerrySprite48;
+        }
+    }
+
+    internal abstract class SeedTemplate : PinTemplate
+    {
+        public SeedTemplate()
+        {
+            IngameType = typeof(Pickable);
+            IsGrouped = true;
+            GroupingDistance = DISTANCE_MUSHROOMS;
+            NormalIcon = Assets.SeedSprite;
+            SmallerIcon = Assets.SeedSprite48;
         }
     }
 }
