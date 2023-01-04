@@ -56,7 +56,7 @@ namespace AutoMapPins
 
         public void UpdatePinVisibility()
         {
-            bool toShow = Mod.IsEnabled(Template.ConfigurationKey) && Objects.Count > 0;
+            bool toShow = Mod.IsEnabled(Template) && Objects.Count > 0;
 
             IsVisible = toShow;
             if (IsVisible)
@@ -69,9 +69,9 @@ namespace AutoMapPins
                 var txt = (KnownLocations.Count > 1 ? (KnownLocations.Count + " ") : "") + Template.Label;
 
                 Pin = Minimap.instance.AddPin(Middle, Minimap.PinType.Icon3, Mod.Wrap(txt), false, false);
-                if (Template.Category?.Icon != null)
+                if (Template.Icon != null)
                 {
-                    Pin.m_icon = Template.Category.Icon;
+                    Pin.m_icon = Template.Icon;
                 }
             }
             else if (Pin != null && Minimap.instance != null)

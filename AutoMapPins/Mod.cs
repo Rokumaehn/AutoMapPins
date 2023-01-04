@@ -8,12 +8,15 @@ using System.Linq;
 using System.Net.NetworkInformation;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using AutoMapPins.Templates;
 
 namespace AutoMapPins
 {
     [BepInPlugin(MOD_ID, "Auto Map Pins", "1.1.1")]
     class Mod : BaseUnityPlugin
     {
+        public static Mod Instance { get; private set; }
+
         public const string MOD_ID = "Kempeth_AutoMapPins";
         public const int MAX_PIN_HEIGHT = 4000;
 
@@ -45,10 +48,10 @@ namespace AutoMapPins
         internal static ConfigEntry<int> padToWidth;
         internal static ConfigEntry<float> fontFactor;
 
-        private static readonly List<PinnedObject> pinnedObjects = new List<PinnedObject>();
-
         void Awake()
         {
+            Instance = this;
+
             var harmony = new Harmony(MOD_ID);
             harmony.PatchAll();
             Mod.Log = this.Logger;
@@ -102,36 +105,26 @@ namespace AutoMapPins
                 1.8f,
                 "This is the estimated factor by which normal characters are wider than spaces");
 
-            showMineables.SettingChanged += Category_SettingChanged;
-            showDungeons.SettingChanged += Category_SettingChanged;
-            showSeeds.SettingChanged += Category_SettingChanged;
-            showHarvestables.SettingChanged += Category_SettingChanged;
-            showFlowers.SettingChanged += Category_SettingChanged;
-            showUncategorized.SettingChanged += Category_SettingChanged;
+            showMineables.SettingChanged += ObjectRegistry.SettingChanged;
+            showDungeons.SettingChanged += ObjectRegistry.SettingChanged;
+            showSeeds.SettingChanged += ObjectRegistry.SettingChanged;
+            showHarvestables.SettingChanged += ObjectRegistry.SettingChanged;
+            showFlowers.SettingChanged += ObjectRegistry.SettingChanged;
+            showUncategorized.SettingChanged += ObjectRegistry.SettingChanged;
 
             Mod.Log.LogInfo("Initializing Assets");
             Assets.Init();
             Mod.Log.LogInfo("Finished initializing Assets");
+
+            TemplateRegistry.Init();
         }
 
-        public static void AddPinnedObject(PinnedObject pin)
+        internal static bool IsEnabled(PinTemplate template)
         {
-            pinnedObjects.Add(pin);
-        }
-        public static void RemovePinnedObject(PinnedObject pin)
-        {
-            pinnedObjects.Remove(pin);
-        }
+            var regCfg = ConfigRegistry.IsEnabled(template);
 
-        private void Category_SettingChanged(object sender, EventArgs e)
-        {
-#if DEBUG
-            Log.LogInfo(String.Format("Setting has changed. Rechecking {0} Pinned Objects", pinnedObjects.Count));
-#endif
-            foreach (var pin in pinnedObjects)
-            {
-                pin.UpdatePinVisibility();
-            }
+            if (regCfg.HasValue) return regCfg.Value;
+            else return IsEnabled(template.ConfigurationKey);
         }
 
         internal static bool IsEnabled(String id)
@@ -156,7 +149,7 @@ namespace AutoMapPins
             {
                 return showFlowers.Value;
             }
-            else if (id == Cat.UNCATEGORIZED?.Key)
+            else if (id == Cat.UNCATEGORIZED.Key)
             {
                 return showUncategorized.Value;
             }

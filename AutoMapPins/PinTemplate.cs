@@ -1,9 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using AutoMapPins.Templates;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using UnityEngine;
+using static WorldGenerator;
 
 namespace AutoMapPins
 {
@@ -22,11 +26,17 @@ namespace AutoMapPins
 
     internal class PinTemplate
     {
+        public const double DISTANCE_MUSHROOMS = 10;
+
+        public const string DIGITS = "\\d+";
+        public const string DIGITS_BRACED_OPTIONAL = "( \\(\\d+\\))?";
+        public const string CLONE = "\\(Clone\\)";
+
         public string Label { get; private set; }
-        public ObjectMatcher Matcher { get; private set; }
+        public ObjectMatcher Matcher { get; protected set; }
         public string ConfigurationKey { get; private set; }
         public Cat Category { get; private set; }
-        public bool IsGrouped { get; private set; }
+        public bool IsGrouped { get; protected set; }
 
         public bool IsMatch(MonoBehaviour obj)
         {
@@ -34,9 +44,39 @@ namespace AutoMapPins
         }
         public bool IsEnabled()
         {
-            return Mod.IsEnabled(this.ConfigurationKey);
+            return Mod.IsEnabled(this);
         }
 
+        public Type IngameType { get; protected set; }
+        public double GroupingDistance { get; protected set; }
+        public String SingleLabel { get => Label; protected set => Label = value; }
+        public String MultipleLabel { get; protected set; }
+        public Sprite NormalIcon { get; protected set; }
+        public Sprite SmallerIcon { get; protected set; }
+        public Biome FirstBiome { get; protected set; }
+
+        public bool IsMatchV2(MonoBehaviour obj)
+        {
+            if (IngameType.IsInstanceOfType(obj))
+            {
+                return Matcher.IsMatch(obj);
+            }
+            return false;
+        }
+
+        public Sprite Icon
+        {
+            get
+            {
+                if (NormalIcon != null && SmallerIcon != null)
+                    return Mod.useSmallerIcons.Value ? SmallerIcon : NormalIcon;
+                else
+                    return Category?.Icon;
+            }
+        }
+
+
+        #region Fluent API
         internal PinTemplate Matching(ObjectMatcher matcher)
         {
             this.Matcher = matcher;
@@ -61,6 +101,7 @@ namespace AutoMapPins
             this.IsGrouped = true;
             return this;
         }
+        #endregion
     }
 
     internal abstract class ObjectMatcher

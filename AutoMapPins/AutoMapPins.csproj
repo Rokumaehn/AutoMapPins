@@ -94,6 +94,7 @@
     <Compile Include="Assets.cs" />
     <Compile Include="Cat.cs" />
     <Compile Include="MineRock5PatchSpawn.cs" />
+    <Compile Include="ObjectRegistry.cs" />
     <Compile Include="PickablePatchSpawn.cs" />
     <Compile Include="LocationPatchSpawn.cs" />
     <Compile Include="MineRockPatchSpawn.cs" />
@@ -108,6 +109,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Templates\Biome.cs" />
+    <Compile Include="Templates\BlackForest\YellowMushroom.cs" />
+    <Compile Include="Templates\BlackForest\Thistle.cs" />
+    <Compile Include="Templates\BlackForest\Blueberry.cs" />
+    <Compile Include="Templates\Meadows\RedMushroom.cs" />
+    <Compile Include="Templates\Meadows\ForestRemains.cs" />
+    <Compile Include="Templates\Meadows\Dandelion.cs" />
+    <Compile Include="Templates\Meadows\Raspberry.cs" />
+    <Compile Include="Templates\TemplateAttribute.cs" />
+    <Compile Include="ConfigRegistry.cs" />
+    <Compile Include="Templates\TemplateRegistry.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="manifest.json" />
@@ -134,6 +146,12 @@
     <None Include="Icons\FlowerIcon48.bin" />
     <None Include="Icons\MineIcon48.bin" />
     <None Include="Icons\SeedIcon48.bin" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Templates\Mistlands\" />
+    <Folder Include="Templates\Mountain\" />
+    <Folder Include="Templates\Plains\" />
+    <Folder Include="Templates\Swamp\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

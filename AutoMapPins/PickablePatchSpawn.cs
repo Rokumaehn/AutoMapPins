@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using AutoMapPins.Templates;
+using HarmonyLib;
 using System.Linq;
 using System.Security.Policy;
 using UnityEngine;
@@ -13,18 +14,6 @@ namespace AutoMapPins
             Pin.Name("Pickable_Stone" + Mod.DIGITS_BRACED_OPTIONAL + Mod.CLONE),
             Pin.Name("Pickable_Branch" + Mod.DIGITS_BRACED_OPTIONAL + Mod.CLONE),
 
-            Pin.Name("Pickable_Mushroom" + Mod.DIGITS_BRACED_OPTIONAL + Mod.CLONE)                                      // stays
-                    .Lbl("Mushroom").Nbl(Cat.HARVESTABLES).Grp(),
-            Pin.Name("Pickable_Dandelion" + Mod.DIGITS_BRACED_OPTIONAL + Mod.CLONE)                                     // stays
-                    .Lbl("Dandelion").Nbl(Cat.FLOWERS).Grp(),
-            Pin.Name("Pickable_ForestCryptRemains" + Mod.DIGITS + Mod.DIGITS_BRACED_OPTIONAL + Mod.CLONE)               // stays
-                    .Lbl("F. Remains").Nbl(Cat.HARVESTABLES).Grp(),
-            Pin.Name("RaspberryBush" + Mod.CLONE).Lbl("Raspberries").Nbl(Cat.HARVESTABLES).Grp(),                       // stays
-
-            Pin.Name("BlueberryBush" + Mod.CLONE).Lbl("Blueberries").Nbl(Cat.HARVESTABLES).Grp(),                       // stays
-            Pin.Name("Pickable_Thistle" + Mod.CLONE).Lbl("Thistle").Nbl(Cat.FLOWERS).Grp(),                             // stays
-            Pin.Name("Pickable_Mushroom_yellow" + Mod.DIGITS_BRACED_OPTIONAL + Mod.CLONE)                               // stays, placed > 5000
-                    .Lbl("Yellow Mushroom").Nbl(Cat.HARVESTABLES).Grp(),
             Pin.Name("Pickable_SurtlingCoreStand" + Mod.DIGITS_BRACED_OPTIONAL + Mod.CLONE).Lbl("Surtling Core").Grp(), // stays, placed > 5000
             Pin.Name("Pickable_SeedCarrot" + Mod.CLONE).Lbl("Carrot Seeds"),                                            // disappears, overlaps with Destructible
 
@@ -66,6 +55,7 @@ namespace AutoMapPins
         {
             Pickable obj = __instance;
             var template = TEMPLATES.FirstOrDefault(t => t.IsMatch(obj));
+            if (template == null) template = TemplateRegistry.Find(__instance);
 
             if (template == null)
             {

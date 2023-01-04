@@ -68,8 +68,10 @@ namespace AutoMapPins
 
         public static Sprite LoadSpriteFromTexture(Texture2D SpriteTexture, float PixelsPerUnit = 100f)
         {
+#if DEBUG
             Mod.Log.LogError(string.Format("Making Sprite from Texture {0}", SpriteTexture));
             Mod.Log.LogInfo(SpriteTexture);
+#endif
 
             return (bool)(Object)SpriteTexture
                 ? Sprite.Create(SpriteTexture, new Rect(0.0f, 0.0f, (float)SpriteTexture.width, (float)SpriteTexture.height), new Vector2(0.0f, 0.0f), PixelsPerUnit)

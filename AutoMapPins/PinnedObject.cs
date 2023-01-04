@@ -21,7 +21,7 @@ namespace AutoMapPins
                 Group.Add(this);
             }
 
-            if (Mod.IsEnabled(Template.ConfigurationKey))
+            if (Mod.IsEnabled(Template))
             {
                 if (Template.IsGrouped)
                 {
@@ -32,7 +32,7 @@ namespace AutoMapPins
                     ShowPin();
                 }
             }
-            Mod.AddPinnedObject(this);
+            ObjectRegistry.AddPinnedObject(this);
 #if DEBUG
             Mod.Log.LogInfo(string.Format("Tracking: {0} at {1} {2} {3}", Template.Label, transform.position.x, transform.position.y, transform.position.z));
 #endif
@@ -41,9 +41,9 @@ namespace AutoMapPins
         private void ShowPin()
         {
             pin = Minimap.instance.AddPin(transform.position, Minimap.PinType.Icon3, Mod.Wrap(Template.Label), false, false);
-            if (Template.Category?.Icon != null)
+            if (Template.Icon != null)
             {
-                pin.m_icon = Template.Category.Icon;
+                pin.m_icon = Template.Icon;
             }
             visible = true;
         }
@@ -59,7 +59,7 @@ namespace AutoMapPins
 
         public void UpdatePinVisibility()
         {
-            var toshow = Mod.IsEnabled(Template.ConfigurationKey);
+            var toshow = Mod.IsEnabled(Template);
             if (toshow != visible)
             {
                 IsVisible = toshow;
@@ -83,7 +83,7 @@ namespace AutoMapPins
 #if DEBUG
             Mod.Log.LogInfo(string.Format("Removing: {0} at {1} {2} {3}", pin?.m_name, transform.position.x, transform.position.y, transform.position.z));
 #endif
-            Mod.RemovePinnedObject(this);
+            ObjectRegistry.RemovePinnedObject(this);
         }
 
         private bool visible;
