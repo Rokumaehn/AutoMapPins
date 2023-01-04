@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using AutoMapPins.Templates;
+using HarmonyLib;
 using System.Linq;
 using System.Security.Policy;
 using UnityEngine;
@@ -10,10 +11,6 @@ namespace AutoMapPins
     {
         private static readonly PinTemplate[] TEMPLATES = new PinTemplate[]
         {
-            Pin.Name("rock\\d+_copper_frac"+Mod.CLONE).Lbl("partial Copper").Nbl(Cat.MINEABLES).Grp(),
-            Pin.Name("mudpile_frac"+Mod.CLONE).Lbl("partial Iron").Nbl(Cat.MINEABLES).Grp(),
-            Pin.Name("silver(vein)?_frac"+Mod.CLONE).Lbl("partial Silver").Nbl(Cat.MINEABLES).Grp(),
-
             Pin.Name("rock\\d+_forest_frac"+Mod.CLONE),
             Pin.Name("rock\\d+_mountain_frac"+Mod.CLONE),
         };
@@ -22,6 +19,7 @@ namespace AutoMapPins
         {
             MineRock5 obj = __instance;
             var template = TEMPLATES.FirstOrDefault(t => t.IsMatch(obj));
+            if (template == null) template = TemplateRegistry.Find(__instance);
 
             if (template == null)
             {

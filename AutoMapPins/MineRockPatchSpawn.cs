@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using AutoMapPins.Templates;
+using HarmonyLib;
 using System.Linq;
 using System.Security.Policy;
 using UnityEngine;
@@ -10,14 +11,13 @@ namespace AutoMapPins
     {
         private static readonly PinTemplate[] TEMPLATES = new PinTemplate[]
         {
-            Pin.Name("Leviathan" + Mod.CLONE).Lbl("Leviathan").Nbl(Cat.MINEABLES),
-            Pin.Name("MineRock_Meteorite" + Mod.CLONE).Lbl("Glowing Metal").Nbl(Cat.MINEABLES)
         };
 
         private static void Postfix(ref MineRock __instance)
         {
             MineRock obj = __instance;
             var template = TEMPLATES.FirstOrDefault(t => t.IsMatch(obj));
+            if (template == null) template = TemplateRegistry.Find(__instance);
 
             if (template == null)
             {

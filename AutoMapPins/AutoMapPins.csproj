@@ -109,7 +109,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Templates\Ashlands\Meteorite.cs" />
     <Compile Include="Templates\Biome.cs" />
+    <Compile Include="Templates\BlackForest\Copper.cs" />
+    <Compile Include="Templates\BlackForest\Tin.cs" />
     <Compile Include="Templates\BlackForest\YellowMushroom.cs" />
     <Compile Include="Templates\BlackForest\Thistle.cs" />
     <Compile Include="Templates\BlackForest\Blueberry.cs" />
@@ -121,22 +124,38 @@
     <Compile Include="Templates\Mistlands\DvergrTreasure.cs" />
     <Compile Include="Templates\Mistlands\DvergrStein.cs" />
     <Compile Include="Templates\Mistlands\DvergrLantern.cs" />
+    <Compile Include="Templates\Mistlands\YggaShoot.cs" />
+    <Compile Include="Templates\Mistlands\GiantBone.cs" />
+    <Compile Include="Templates\Mistlands\GiantHelmet.cs" />
+    <Compile Include="Templates\Mistlands\GiantSword.cs" />
+    <Compile Include="Templates\Mistlands\GiantBrain.cs" />
     <Compile Include="Templates\Mistlands\JotunPuffs.cs" />
     <Compile Include="Templates\Mistlands\Magecap.cs" />
+    <Compile Include="Templates\Mountain\Silver.cs" />
+    <Compile Include="Templates\Mountain\Obsidian.cs" />
     <Compile Include="Templates\Mountain\FenrisHair.cs" />
     <Compile Include="Templates\Mountain\DragonEgg.cs" />
     <Compile Include="Templates\Mountain\MountainRemains.cs" />
+    <Compile Include="Templates\Ocean\Leviathan.cs" />
     <Compile Include="Templates\Plains\FulingTotem.cs" />
     <Compile Include="Templates\Plains\Tar.cs" />
     <Compile Include="Templates\Plains\Flax.cs" />
     <Compile Include="Templates\Plains\Barley.cs" />
     <Compile Include="Templates\Plains\Cloudberry.cs" />
+    <Compile Include="Templates\Swamp\GuckSack.cs" />
+    <Compile Include="Templates\Swamp\MudPile.cs" />
     <Compile Include="Templates\Swamp\TurnipSeeds.cs" />
     <Compile Include="Templates\TemplateAttribute.cs" />
     <Compile Include="ConfigRegistry.cs" />
     <Compile Include="Templates\TemplateRegistry.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Icons\AxeIcon.bin" />
+    <None Include="Icons\AxeIcon48.bin" />
+    <None Include="Icons\HandIcon.bin" />
+    <None Include="Icons\HandIcon48.bin" />
+    <None Include="Icons\MushroomIcon.bin" />
+    <None Include="Icons\MushroomIcon48.bin" />
     <None Include="manifest.json" />
   </ItemGroup>
   <ItemGroup>

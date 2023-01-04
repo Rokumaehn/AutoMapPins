@@ -23,8 +23,11 @@ This mod is free software: you can redistribute it and/or modify it under the te
 
 Asset Licenses:
 
-* Mine by Edward Boatman from [Noun Project](https://thenounproject.com/browse/icons/term/mine/) (CCBY) - modified
-* Flower by Vectors Market from [Noun Project](https://thenounproject.com/browse/icons/term/flower/) (CCBY) - modified
+* Axe by Danil Polshin from [Noun Project](https://thenounproject.com/browse/icons/term/axe/) (CCBY) - modified
 * cave by Kieu Thi Kim Cuong from [Noun Project](https://thenounproject.com/browse/icons/term/cave/) (CCBY) - modified
+* Flower by Vectors Market from [Noun Project](https://thenounproject.com/browse/icons/term/flower/) (CCBY) - modified
+* Mine by Edward Boatman from [Noun Project](https://thenounproject.com/browse/icons/term/mine/) (CCBY) - modified
+* Mushroom by Anton Gajdosik from [Noun Project](https://thenounproject.com/browse/icons/term/mushroom/) (CCBY) - modified
+* pick by Pham Duy Phuong Hung from [Noun Project](https://thenounproject.com/browse/icons/term/pick/) (CCBY) - modified
 * raspberry by Laymik from [Noun Project](https://thenounproject.com/browse/icons/term/raspberry/) (CCBY) - modified
 * seeds by Orin zuu from [Noun Project](https://thenounproject.com/browse/icons/term/seeds/) (CCBY) - modified

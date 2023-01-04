@@ -8,16 +8,16 @@ using UnityEngine;
 namespace AutoMapPins.Templates.Swamp
 {
     [Template]
-    internal class TurnipSeeds : SeedTemplate
+    internal class GuckSack : AxeTemplate
     {
-        public TurnipSeeds()
+        public GuckSack()
         {
+            // Via Axe and Pickaxe
             // Disappears
-            // Overlaps with Pickable
-            Matcher = new InstanceNameRegex("Pickable_SeedTurnip" + CLONE);
+            Matcher = new HoverTextRegex("\\$item_destructible_gucksack");
             FirstBiome = Biome.SWAMPS;
-            SingleLabel = "Turnip Seeds";
-            MultipleLabel = "{0} Turnip Seeds";
+            SingleLabel = "Guck Sack";
+            MultipleLabel = "{0} Guck Sacks";
         }
     }
 }

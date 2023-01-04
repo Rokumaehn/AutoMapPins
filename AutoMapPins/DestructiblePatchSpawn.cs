@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using AutoMapPins.Templates;
+using HarmonyLib;
 using System.Linq;
 using UnityEngine;
 
@@ -9,25 +10,13 @@ namespace AutoMapPins
     {
         private static readonly PinTemplate[] TEMPLATES = new PinTemplate[]
         {
-            Pin.Hovr("\\$piece_deposit_tin").Lbl("Tin").Nbl(Cat.MINEABLES).Grp(),
-            Pin.Hovr("\\$piece_deposit_copper").Lbl("Copper").Nbl(Cat.MINEABLES).Grp(),
-            Pin.Hovr("\\$piece_deposit_obsidian").Lbl("Obsidian").Nbl(Cat.MINEABLES).Grp(),
-            Pin.Hovr("\\$piece_deposit_silver(vein)?").Lbl("Silver").Nbl(Cat.MINEABLES).Grp(),
-            Pin.Hovr("\\$piece_mudpile").Lbl("Iron").Nbl(Cat.MINEABLES).Grp(),
-            Pin.Hovr("\\$item_destructible_gucksack").Lbl("Guck Sack").Grp(),
-
             Pin.Hovr("\\$prop_beech"),
             Pin.Hovr("\\$prop_treestump"),//Possibly same as Beech_Stub(Clone)
             Pin.Hovr("\\$prop_fir"),
             Pin.Hovr("\\$prop_treelog"),
-            Pin.Hovr("\\$prop_yggashoot"),
             Pin.Hovr("\\$enemy_greydwarfspawner"),
             Pin.Hovr("\\$enemy_skeletonspawner"),
             Pin.Hovr("\\$enemy_draugrspawner"),
-            Pin.Hovr("\\$piece_giant_helmet"),
-            Pin.Hovr("\\$piece_giant_sword"),
-            Pin.Hovr("\\$piece_giant_bone"),
-            Pin.Hovr("\\$piece_giant_brain"),
 
             Pin.Name("barrell" + Mod.CLONE),
             Pin.Name("blackmarble_altar_crystal" + Mod.CLONE),
@@ -69,12 +58,8 @@ namespace AutoMapPins
             Pin.Name("mountainkit_chair" + Mod.CLONE),
             Pin.Name("mountainkit_table" + Mod.CLONE),
             Pin.Name("MountainKit_wood_gate" + Mod.CLONE),
-            Pin.Name("Pickable_Barley_Wild" + Mod.DIGITS_BRACED_OPTIONAL + Mod.CLONE).Lbl("Barley").Nbl(Cat.SEEDS).Grp(),
-            Pin.Name("Pickable_Flax_Wild" + Mod.DIGITS_BRACED_OPTIONAL + Mod.CLONE).Lbl("Flax").Nbl(Cat.SEEDS).Grp(),
             Pin.Name("Pickable_MountainCaveCrystal" + Mod.CLONE),
             Pin.Name("Pickable_RoyalJelly" + Mod.CLONE),
-            Pin.Name("Pickable_SeedCarrot" + Mod.CLONE).Lbl("Carrot Seeds").Nbl(Cat.SEEDS).Grp(),
-            Pin.Name("Pickable_SeedTurnip" + Mod.CLONE).Lbl("Turnip Seeds").Nbl(Cat.SEEDS).Grp(),
             Pin.Name("RaspberryBush" + Mod.CLONE),
             Pin.Name("Rock_" + Mod.DIGITS + Mod.DIGITS_BRACED_OPTIONAL + Mod.CLONE),
             Pin.Name("Rock_" + Mod.DIGITS + "_plains" + Mod.CLONE),
@@ -98,6 +83,7 @@ namespace AutoMapPins
         {
             Destructible obj = __instance;
             var template = TEMPLATES.FirstOrDefault(t => t.IsMatch(obj));
+            if (template == null) template = TemplateRegistry.Find(__instance);
 
             if (template == null)
             {

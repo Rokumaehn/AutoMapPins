@@ -13,7 +13,7 @@ namespace AutoMapPins.Templates.BlackForest
         public CarrotSeeds()
         {
             // Disappears
-            // Overlaps with Destructable
+            // Overlaps with Pickable
             Matcher = new InstanceNameRegex("Pickable_SeedCarrot" + CLONE);
             FirstBiome = Biome.BLACK_FORESTS;
             SingleLabel = "Carrot Seeds";

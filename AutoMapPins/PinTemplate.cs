@@ -27,6 +27,7 @@ namespace AutoMapPins
     internal class PinTemplate
     {
         public const double DISTANCE_MUSHROOMS = 10;
+        public const double DISTANCE_OBSIDIAN = 80;
 
         public const string DIGITS = "\\d+";
         public const string DIGITS_BRACED_OPTIONAL = "( \\(\\d+\\))?";

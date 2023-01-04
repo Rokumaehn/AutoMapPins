@@ -8,12 +8,12 @@ using UnityEngine;
 namespace AutoMapPins.Templates.Plains
 {
     [Template]
-    internal class Barley : PickableTemplate
+    internal class Barley : SeedTemplate
     {
         public Barley()
         {
             // Disappears
-            // Overlaps with Destructable
+            // Overlaps with Pickable
             Matcher = new InstanceNameRegex("Pickable_Barley_Wild" + DIGITS_BRACED_OPTIONAL + CLONE);
             FirstBiome = Biome.PLAINS;
             SingleLabel = "Barley";

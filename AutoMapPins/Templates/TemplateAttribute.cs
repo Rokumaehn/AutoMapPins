@@ -19,8 +19,8 @@ namespace AutoMapPins.Templates
             IngameType = typeof(Pickable);
             IsGrouped = true;
             GroupingDistance = DISTANCE_MUSHROOMS;
-            NormalIcon = Assets.BerrySprite;
-            SmallerIcon = Assets.BerrySprite48;
+            NormalIcon = Assets.HandSprite;
+            SmallerIcon = Assets.HandSprite48;
         }
     }
 
@@ -55,8 +55,8 @@ namespace AutoMapPins.Templates
             IngameType = typeof(Pickable);
             IsGrouped = true;
             GroupingDistance = DISTANCE_MUSHROOMS;
-            NormalIcon = Assets.BerrySprite;
-            SmallerIcon = Assets.BerrySprite48;
+            NormalIcon = Assets.HandSprite;
+            SmallerIcon = Assets.HandSprite48;
         }
     }
 
@@ -67,8 +67,8 @@ namespace AutoMapPins.Templates
             IngameType = typeof(Pickable);
             IsGrouped = true;
             GroupingDistance = DISTANCE_MUSHROOMS;
-            NormalIcon = Assets.BerrySprite;
-            SmallerIcon = Assets.BerrySprite48;
+            NormalIcon = Assets.MushroomSprite;
+            SmallerIcon = Assets.MushroomSprite48;
         }
     }
 
@@ -76,11 +76,35 @@ namespace AutoMapPins.Templates
     {
         public SeedTemplate()
         {
-            IngameType = typeof(Pickable);
+            IngameType = typeof(Destructible);
             IsGrouped = true;
             GroupingDistance = DISTANCE_MUSHROOMS;
             NormalIcon = Assets.SeedSprite;
             SmallerIcon = Assets.SeedSprite48;
+        }
+    }
+
+    internal abstract class MineTemplate : PinTemplate
+    {
+        public MineTemplate()
+        {
+            IngameType = typeof(Destructible);
+            IsGrouped = true;
+            GroupingDistance = DISTANCE_MUSHROOMS;
+            NormalIcon = Assets.MineSprite;
+            SmallerIcon = Assets.MineSprite48;
+        }
+    }
+
+    internal abstract class AxeTemplate : PinTemplate
+    {
+        public AxeTemplate()
+        {
+            IngameType = typeof(Destructible);
+            IsGrouped = true;
+            GroupingDistance = DISTANCE_MUSHROOMS;
+            NormalIcon = Assets.AxeSprite;
+            SmallerIcon = Assets.AxeSprite48;
         }
     }
 }
