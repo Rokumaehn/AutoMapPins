@@ -10,7 +10,6 @@ namespace AutoMapPins
     internal class Cat
     {
         public static readonly Cat UNCATEGORIZED = null;
-        public static readonly Cat DUNGEONS = new Cat("Category.Dungeons", Assets.DungeonSprite, Assets.DungeonSprite48);
         public static readonly Cat HARVESTABLES = new Cat("Category.Harvestables", Assets.HandSprite, Assets.HandSprite48);
 
 

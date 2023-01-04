@@ -26,9 +26,6 @@ namespace AutoMapPins
 
         public static ManualLogSource Log;
 
-        internal static ConfigEntry<bool> showDungeons;
-        private const bool showDungeonsDefault = true;
-
         internal static ConfigEntry<bool> showHarvestables;
         private const bool showHarvestablesDefault = true;
 
@@ -47,11 +44,6 @@ namespace AutoMapPins
             harmony.PatchAll();
             Mod.Log = this.Logger;
 
-            showDungeons = this.Config.Bind<bool>(
-                "Categories",
-                "Dungeons",
-                showDungeonsDefault,
-                "Show dungeon entrances");
             showHarvestables = this.Config.Bind<bool>(
                 "Categories",
                 "Harvestables",
@@ -81,13 +73,10 @@ namespace AutoMapPins
                 1.8f,
                 "This is the estimated factor by which normal characters are wider than spaces");
 
-            showDungeons.SettingChanged += ObjectRegistry.SettingChanged;
             showHarvestables.SettingChanged += ObjectRegistry.SettingChanged;
             showUncategorized.SettingChanged += ObjectRegistry.SettingChanged;
 
-            Mod.Log.LogInfo("Initializing Assets");
             Assets.Init();
-            Mod.Log.LogInfo("Finished initializing Assets");
 
             TemplateRegistry.Init();
         }
@@ -102,11 +91,7 @@ namespace AutoMapPins
 
         internal static bool IsEnabled(String id)
         {
-            if (id == Cat.DUNGEONS.Key)
-            {
-                return showDungeons.Value;
-            }
-            else if (id == Cat.HARVESTABLES.Key)
+            if (id == Cat.HARVESTABLES.Key)
             {
                 return showHarvestables.Value;
             }
