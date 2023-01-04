@@ -112,6 +112,8 @@
     <Compile Include="Templates\Ashlands\Meteorite.cs" />
     <Compile Include="Templates\Biome.cs" />
     <Compile Include="Templates\BlackForest\Copper.cs" />
+    <Compile Include="Templates\BlackForest\BurialChambers.cs" />
+    <Compile Include="Templates\BlackForest\TrollCave.cs" />
     <Compile Include="Templates\BlackForest\Tin.cs" />
     <Compile Include="Templates\BlackForest\YellowMushroom.cs" />
     <Compile Include="Templates\BlackForest\Thistle.cs" />
@@ -124,6 +126,7 @@
     <Compile Include="Templates\Mistlands\DvergrTreasure.cs" />
     <Compile Include="Templates\Mistlands\DvergrStein.cs" />
     <Compile Include="Templates\Mistlands\DvergrLantern.cs" />
+    <Compile Include="Templates\Mistlands\InfestedMine.cs" />
     <Compile Include="Templates\Mistlands\YggaShoot.cs" />
     <Compile Include="Templates\Mistlands\GiantBone.cs" />
     <Compile Include="Templates\Mistlands\GiantHelmet.cs" />
@@ -131,6 +134,7 @@
     <Compile Include="Templates\Mistlands\GiantBrain.cs" />
     <Compile Include="Templates\Mistlands\JotunPuffs.cs" />
     <Compile Include="Templates\Mistlands\Magecap.cs" />
+    <Compile Include="Templates\Mountain\MountainCave.cs" />
     <Compile Include="Templates\Mountain\Silver.cs" />
     <Compile Include="Templates\Mountain\Obsidian.cs" />
     <Compile Include="Templates\Mountain\FenrisHair.cs" />
@@ -142,6 +146,7 @@
     <Compile Include="Templates\Plains\Flax.cs" />
     <Compile Include="Templates\Plains\Barley.cs" />
     <Compile Include="Templates\Plains\Cloudberry.cs" />
+    <Compile Include="Templates\Swamp\SunkenCrypt.cs" />
     <Compile Include="Templates\Swamp\GuckSack.cs" />
     <Compile Include="Templates\Swamp\MudPile.cs" />
     <Compile Include="Templates\Swamp\TurnipSeeds.cs" />

@@ -107,4 +107,14 @@ namespace AutoMapPins.Templates
             SmallerIcon = Assets.AxeSprite48;
         }
     }
+
+    internal abstract class DungeonTemplate : PinTemplate
+    {
+        public DungeonTemplate()
+        {
+            IngameType = typeof(Location);
+            NormalIcon = Assets.DungeonSprite;
+            SmallerIcon = Assets.DungeonSprite48;
+        }
+    }
 }

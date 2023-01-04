@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using AutoMapPins.Templates;
+using HarmonyLib;
 using System;
 using System.Linq;
 using System.Security.Policy;
@@ -18,7 +19,6 @@ namespace AutoMapPins
             //Pin.Make(Pin.Name("" + Mod.DIGITS)),
 
             Pin.Name("AbandonedLogCabin" + Mod.DIGITS + Mod.CLONE).Lbl("Log Cabin"),                                    // Location with loot
-            Pin.Name("^Crypt" + Mod.DIGITS + Mod.CLONE).Lbl("Burial Chambers").Nbl(Cat.DUNGEONS),                       // Dungeon
             Pin.Name("Dolmen" + Mod.DIGITS + Mod.CLONE).Lbl("Dolmen"),
             Pin.Name("DrakeNest" + Mod.DIGITS + Mod.CLONE).Lbl("Drake Nest"),                                           // tested overlaps with dragon egg
             Pin.Name("GoblinCamp" + Mod.DIGITS + Mod.CLONE).Lbl("Goblin Camp"),                                         // tested
@@ -26,9 +26,7 @@ namespace AutoMapPins
             Pin.Name("Greydwarf_camp" + Mod.DIGITS + Mod.CLONE).Lbl("Greydwarf Nest (Spawner)"),                        // tested
             Pin.Name("InfestedTree" + Mod.DIGITS + Mod.CLONE).Lbl("Infested Tree"),                                     // tested overlaps with guck sacks
             Pin.Name("MountainGrave" + Mod.DIGITS + Mod.CLONE).Lbl("Mountain Grave"),
-            Pin.Name("MountainCave" + Mod.DIGITS + Mod.CLONE).Lbl("Mountain Cave").Nbl(Cat.DUNGEONS),                   // Dungeon
             Pin.Name("MountainWell" + Mod.DIGITS + Mod.CLONE).Lbl("Mountain Well"),                                     // Point of interest
-            Pin.Name("Mistlands_DvergrTownEntrance" + Mod.DIGITS + Mod.CLONE).Lbl("Infested Mine").Nbl(Cat.DUNGEONS),   // Dungeon
             Pin.Name("Mistlands_Excavation" + Mod.DIGITS + Mod.CLONE).Lbl("Excavation"),                                // Location with loot
             Pin.Name("Mistlands_Giant" + Mod.DIGITS + Mod.CLONE).Lbl("Giant"),                                          // petrified bone
             Pin.Name("Mistlands_GuardTower" + Mod.DIGITS + "_new" + Mod.CLONE).Lbl("Guard Tower"),                      // Location with loot
@@ -46,11 +44,9 @@ namespace AutoMapPins
             Pin.Name("ShipWreck" + Mod.DIGITS + Mod.CLONE).Lbl("Ship Wreck"),                                           // Location with loot
             Pin.Name("StoneHenge" + Mod.DIGITS + Mod.CLONE).Lbl("Stonehenge"),                                          // Point of interest
             Pin.Name("StoneTowerRuins" + Mod.DIGITS + Mod.CLONE).Lbl("Stone Tower Ruins"),                              // Location with loot
-            Pin.Name("SunkenCrypt" + Mod.DIGITS + Mod.CLONE).Lbl("Sunken Crypt").Nbl(Cat.DUNGEONS),                     // Dungeon
             Pin.Name("SwampHut" + Mod.DIGITS + Mod.CLONE).Lbl("Swamp Hut"),                                             // Point of interest
             Pin.Name("SwampWell" + Mod.DIGITS + Mod.CLONE).Lbl("Swamp Well"),                                           // Point of interest
             Pin.Name("TarPit" + Mod.DIGITS + Mod.CLONE),
-            Pin.Name("TrollCave" + Mod.DIGITS + Mod.CLONE).Lbl("Troll Cave").Nbl(Cat.DUNGEONS),                         // Dungeon
             Pin.Name("WoodHouse" + Mod.DIGITS + Mod.CLONE).Lbl("Wood House"),                                           // Location with loot
             Pin.Name("WoodVillage" + Mod.DIGITS + Mod.CLONE).Lbl("Wood Village"),                                       // Location with loot
             //Pin.Make(Pin.Name("" + Mod.DIGITS + Mod.CLONE)),
@@ -80,6 +76,7 @@ namespace AutoMapPins
         {
             Location obj = __instance;
             var template = TEMPLATES.FirstOrDefault(t => t.IsMatch(obj));
+            if (template == null) template = TemplateRegistry.Find(__instance);
 
             if (template == null)
             {
