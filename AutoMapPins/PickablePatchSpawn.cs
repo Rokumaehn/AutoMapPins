@@ -14,6 +14,9 @@ namespace AutoMapPins
             Pin.Name("Pickable_Stone" + Mod.DIGITS_BRACED_OPTIONAL + Mod.CLONE),
             Pin.Name("Pickable_Branch" + Mod.DIGITS_BRACED_OPTIONAL + Mod.CLONE),
 
+            Pin.Name("Pickable_SeedCarrot" + Mod.CLONE).Lbl("Carrot Seed").Grp(),
+            Pin.Name("Pickable_SeedTurnip" + Mod.CLONE).Lbl("Turnip Seed").Grp(),
+            
             Pin.Name("Pickable_SurtlingCoreStand" + Mod.DIGITS_BRACED_OPTIONAL + Mod.CLONE).Lbl("Surtling Core").Grp(), // stays, placed > 5000
 
             Pin.Name("Pickable_MeatPile" + Mod.DIGITS_BRACED_OPTIONAL + Mod.CLONE)                                      // stays, placed > 5000

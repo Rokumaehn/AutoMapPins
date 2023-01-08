@@ -13,6 +13,8 @@ namespace AutoMapPins
         {
             Pin.Name("rock\\d+_forest_frac"+Mod.CLONE),
             Pin.Name("rock\\d+_mountain_frac"+Mod.CLONE),
+            Pin.Name("rock\\d+_frac"+Mod.CLONE),
+            Pin.Name("rock\\d+_coast_frac"+Mod.CLONE),
         };
 
         private static void Postfix(ref MineRock5 __instance)

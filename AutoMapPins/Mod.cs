@@ -95,7 +95,7 @@ namespace AutoMapPins
             {
                 return showHarvestables.Value;
             }
-            else if (id == Cat.UNCATEGORIZED.Key)
+            else if (id == Cat.UNCATEGORIZED?.Key)
             {
                 return showUncategorized.Value;
             }
