@@ -115,6 +115,7 @@ namespace AutoMapPins.Templates
             IngameType = typeof(Location);
             NormalIcon = Assets.DungeonSprite;
             SmallerIcon = Assets.DungeonSprite48;
+            IsPersistent = true;
         }
     }
 }

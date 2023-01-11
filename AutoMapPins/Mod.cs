@@ -12,7 +12,7 @@ using AutoMapPins.Templates;
 
 namespace AutoMapPins
 {
-    [BepInPlugin(MOD_ID, "Auto Map Pins", "1.1.1")]
+    [BepInPlugin(MOD_ID, "Auto Map Pins", "1.2.0")]
     class Mod : BaseUnityPlugin
     {
         public static Mod Instance { get; private set; }

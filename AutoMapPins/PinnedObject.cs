@@ -1,6 +1,9 @@
 ﻿using System.Reflection;
 using System.Reflection.Emit;
 using UnityEngine;
+using AutoMapPins.Patches;
+using System.Linq;
+using System;
 
 namespace AutoMapPins
 {
@@ -40,17 +43,38 @@ namespace AutoMapPins
 
         private void ShowPin()
         {
-            pin = Minimap.instance.AddPin(transform.position, Minimap.PinType.Icon3, Mod.Wrap(Template.Label), false, false);
-            if (Template.Icon != null)
+            if (Template.IsPersistent)
             {
-                pin.m_icon = Template.Icon;
+                var existing = Minimap.instance.FindSimilarPin(transform.position, Template.Label);
+
+                if (existing != null)
+                {
+                    pin = existing;
+                    pin.m_name = Mod.Wrap(Template.Label);
+                }
+                else
+                {
+                    pin = Minimap.instance.AddPin(transform.position, Minimap.PinType.Icon3, Mod.Wrap(Template.Label), true, false);
+                }
+                if (Template.Icon != null)
+                {
+                    pin.m_icon = Template.Icon;
+                }
+            }
+            else
+            {
+                pin = Minimap.instance.AddPin(transform.position, Minimap.PinType.Icon3, Mod.Wrap(Template.Label), false, false);
+                if (Template.Icon != null)
+                {
+                    pin.m_icon = Template.Icon;
+                }
             }
             visible = true;
         }
 
         private void HidePin()
         {
-            if (pin != null && Minimap.instance != null)
+            if (pin != null && Minimap.instance != null && !Template.IsPersistent)
             {
                 Minimap.instance.RemovePin(pin);
             }
@@ -73,7 +97,10 @@ namespace AutoMapPins
 
         void OnDestroy()
         {
-            HidePin();
+            if (!Template.IsPersistent)
+            {
+                HidePin();
+            }
 
             if (Group != null)
             {

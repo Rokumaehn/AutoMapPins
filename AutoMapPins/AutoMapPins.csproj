@@ -95,6 +95,7 @@
     <Compile Include="Cat.cs" />
     <Compile Include="MineRock5PatchSpawn.cs" />
     <Compile Include="ObjectRegistry.cs" />
+    <Compile Include="Patches\Minimap.cs" />
     <Compile Include="PickablePatchSpawn.cs" />
     <Compile Include="LocationPatchSpawn.cs" />
     <Compile Include="MineRockPatchSpawn.cs" />

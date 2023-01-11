@@ -43,5 +43,12 @@ namespace AutoMapPins.Templates
         {
             return Templates.FirstOrDefault(t => t.IsMatchV2(obj));
         }
+
+        internal static PinTemplate Find(Minimap.PinData pin)
+        {
+            return Templates.FirstOrDefault(t =>
+                t.IsPersistent && pin.m_name.Contains(t.Label.Replace(' ', '\u00A0'))
+            );
+        }
     }
 }

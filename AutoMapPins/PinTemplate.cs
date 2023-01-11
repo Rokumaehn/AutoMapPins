@@ -55,6 +55,7 @@ namespace AutoMapPins
         public Sprite NormalIcon { get; protected set; }
         public Sprite SmallerIcon { get; protected set; }
         public Biome FirstBiome { get; protected set; }
+        public bool IsPersistent { get; protected set; }
 
         public bool IsMatchV2(MonoBehaviour obj)
         {
