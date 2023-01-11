@@ -17,6 +17,8 @@ All objects have custom icons and can be enabled and disabled via the **BepInEx 
 
 You can also now choose to have smaller pin marker and text to further reduce map clutter. Icons are 25% smaller and text about 50% smaller.
 
+As of Version 1.3.0.0 dungeon pins are now persistent! This means their toggles in the settings work slightly different. Instead of hiding/showing the corresponding pins, the setting now determines whether or not newly discovered locations will be added to the map or not.
+
 ##  Planned Features
 * Pins for Points of Interests like ruins, stone circles and camps
 
