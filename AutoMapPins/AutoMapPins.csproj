@@ -37,11 +37,11 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="assembly_guiutils">
-      <HintPath>D:\SteamLibrary\steamapps\common\Valheim\valheim_Data\Managed\assembly_guiutils.dll</HintPath>
+      <HintPath>F:\Spiele\SteamLibrary\steamapps\common\Valheim\valheim_Data\Managed\assembly_guiutils.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="assembly_valheim">
-      <HintPath>D:\SteamLibrary\steamapps\common\Valheim\valheim_Data\Managed\assembly_valheim.dll</HintPath>
+      <HintPath>F:\Spiele\SteamLibrary\steamapps\common\Valheim\valheim_Data\Managed\assembly_valheim.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="BepInEx">
@@ -77,16 +77,16 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine">
-      <HintPath>D:\SteamLibrary\steamapps\common\Valheim\unstripped_corlib\UnityEngine.dll</HintPath>
+      <HintPath>F:\Spiele\SteamLibrary\steamapps\common\Valheim\unstripped_corlib\UnityEngine.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>D:\SteamLibrary\steamapps\common\Valheim\unstripped_corlib\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>F:\Spiele\SteamLibrary\steamapps\common\Valheim\unstripped_corlib\UnityEngine.CoreModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.ImageConversionModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\SteamLibrary\steamapps\common\Valheim\unstripped_corlib\UnityEngine.ImageConversionModule.dll</HintPath>
+      <HintPath>F:\Spiele\SteamLibrary\steamapps\common\Valheim\unstripped_corlib\UnityEngine.ImageConversionModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
@@ -193,7 +193,6 @@
     <PostBuildEvent>if $(ConfigurationName) == Release (powershell Compress-Archive -Path '$(TargetDir)*.dll', '$(TargetDir)*.pdb', '$(ProjectDir)manifest.json', '$(ProjectDir)icon.png', '$(SolutionDir)readme.md' -DestinationPath '$(SolutionDir)\Auto Map Pins Thunderstore.zip' -Force)
 
 if $(ConfigurationName) == Release (powershell Compress-Archive -Path '$(TargetDir)*.dll', '$(TargetDir)*.pdb' -DestinationPath '$(SolutionDir)\Auto Map Pins Nexus.zip' -Force)
-
-if $(ConfigurationName) == Debug (powershell copy-item '$(TargetDir)*.*' '$(ProjectDir)References\valheim_Data\..\BepInEx\plugins\AutoMapPins\')</PostBuildEvent>
+</PostBuildEvent>
   </PropertyGroup>
 </Project>
