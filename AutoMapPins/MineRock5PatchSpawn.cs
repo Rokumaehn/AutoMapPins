@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace AutoMapPins
 {
-    [HarmonyPatch(typeof(MineRock5), "Start")]
+    [HarmonyPatch(typeof(MineRock5), "Awake")]
     class MineRock5PatchSpawn
     {
         private static readonly PinTemplate[] TEMPLATES = new PinTemplate[]
